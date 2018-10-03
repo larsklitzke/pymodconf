@@ -5,22 +5,22 @@ This is a Python package which enables to modularize configuration files.
 In configuration-based applications, it is sometimes desirable to group
 sections in a configuration file. This can, for instance, be sections which are for a specific purpose, e.g. modules in an application which shall be configurable.
 
-For this purpose, `modconf` add the functionality to define custom `Tag`s representing groups in a configuration file. For instance, if you have an application with multiple modules you can define the tag `Module: ` and add that prefix to each section in the configuration file describing a certain module.
+For this purpose, `pymodconf` add the functionality to define custom `Tag`s representing groups in a configuration file. For instance, if you have an application with multiple modules you can define the tag `Module: ` and add that prefix to each section in the configuration file describing a certain module.
 
 
 ## Installation
 
-You can find the latest version on [PyPi](https://pypi.org/project/modconf/). So simply use `pip` with
+You can find the latest version on [PyPi](https://pypi.org/project/pymodconf/). So simply use `pip` with
 
-    pip install modconf
+    pip install pymodconf
 
 
 ## Usage
 
-This following configuration file shows the feature set of `modconf`: 
+This following configuration file shows the feature set of `pymodconf`: 
     
     1: [Application]
-    2: name=modconf
+    2: name=pymodconf
     3: string=Hello ${name}!
     4: list=One, Two, Three, Four
     
@@ -34,21 +34,21 @@ This following configuration file shows the feature set of `modconf`:
 In line `[1]`  a new section `Application` is created with multiple options show in lines `[2]-[3]`.
 
 ### Variable replacement
-Due to the fact that `modconf` is based on the `configparser` module, the variable-replacement feature is available, too. In line `[3]` a reference to an option in the same section is shown. If you want to reference an option in any other section, you'll have to specify the name of the section, as you can see in line `[7]`.
+Due to the fact that `pymodconf` is based on the `configparser` module, the variable-replacement feature is available, too. In line `[3]` a reference to an option in the same section is shown. If you want to reference an option in any other section, you'll have to specify the name of the section, as you can see in line `[7]`.
 
 ### Lists
-If `modconf` finds any commata in the value of an option, it will split up that value and generate a list of it. In line `[4]` the value is represented in Python as a list with four entries: 'One', 'Two', 'Three', 'Four'.
+If `pymodconf` finds any commata in the value of an option, it will split up that value and generate a list of it. In line `[4]` the value is represented in Python as a list with four entries: 'One', 'Two', 'Three', 'Four'.
 
 ### Directory creation
-Another feature of `modconf` is the automatic directory creation. If any option name ends with the suffix `-dir` it will try to recursively create the directory tree. For instance, due to the definition in line `[10]`, a directory `test-module` will be created in the directory `/tmp/`.
+Another feature of `pymodconf` is the automatic directory creation. If any option name ends with the suffix `-dir` it will try to recursively create the directory tree. For instance, due to the definition in line `[10]`, a directory `test-module` will be created in the directory `/tmp/`.
 
 ### Tagging
-The most interesting feature of `modconf` is the ability to group sections using user-defined `Tag`s. As you can see in line `[9]` a section with the tag definition `Module` is defined. 
+The most interesting feature of `pymodconf` is the ability to group sections using user-defined `Tag`s. As you can see in line `[9]` a section with the tag definition `Module` is defined. 
 
-Before `modconf` is able to group such sections, you'll have to register the tag ad `modconf` with:
+Before `pymodconf` is able to group such sections, you'll have to register the tag ad `pymodconf` with:
 
 ```
-import modconf as mc
+import pymodconf as mc
 
 module_tag = mc.tag.Tag('Module:')
 mc.tag.register(module_tag)

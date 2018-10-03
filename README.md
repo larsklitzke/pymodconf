@@ -1,4 +1,4 @@
-# Modularized Configurations
+# Modularized configuration files
 
 This is a Python package which enables to modularize configuration files.
 

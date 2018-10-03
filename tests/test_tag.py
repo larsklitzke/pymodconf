@@ -18,10 +18,10 @@
 import os
 import unittest
 
-from modconf import tag
-from modconf.io import read
-from modconf.parser import parse
-from modconf.tag import Tag, register
+from pymodconf import tag
+from pymodconf.io import read
+from pymodconf.parser import parse
+from pymodconf.tag import Tag, register
 
 
 class TestTagCreation(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestTagCreation(unittest.TestCase):
 
         register(test_tag)
 
-        from modconf.tag import _TAGS
+        from pymodconf.tag import _TAGS
         self.assertTrue(test_tag in _TAGS)
 
     def test_tag_available(self):

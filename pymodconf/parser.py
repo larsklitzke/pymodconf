@@ -17,8 +17,8 @@
 
 
 # Registered tags
-from modconf import tag
-from modconf.io import read
+from pymodconf import tag
+from pymodconf.io import read
 
 
 class InvalidConfigurationError(RuntimeError):

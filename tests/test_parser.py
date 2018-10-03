@@ -18,8 +18,8 @@
 import os
 import unittest
 
-from modconf.parser import load, InvalidConfigurationError
-from modconf.tag import Tag, register
+from pymodconf.parser import load, InvalidConfigurationError
+from pymodconf.tag import Tag, register
 
 MODULE_TEST_FILE = os.path.join(os.path.dirname(__file__), 'module_test_config.cfg')
 DEFAULT_TEST_FILE = os.path.join(os.path.dirname(__file__), 'default_test_config.cfg')
@@ -52,7 +52,7 @@ class TestLoadDefaultConfiguration(unittest.TestCase):
 
         self.assertIn('name', config)
         self.assertIn('string', config)
-        self.assertEqual('Hello modconf!', config['string'])
+        self.assertEqual('Hello pymodconf!', config['string'])
 
         print(config['string'])
 
@@ -70,7 +70,7 @@ class TestLoadDefaultConfiguration(unittest.TestCase):
 
         self.assertIn('Some Section', config)
 
-        self.assertEqual('modconf-section', config['Some Section']['opt'])
+        self.assertEqual('pymodconf-section', config['Some Section']['opt'])
 
 
 class TestLoadConfigValidated(unittest.TestCase):

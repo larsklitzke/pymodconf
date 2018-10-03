@@ -19,7 +19,7 @@ import os
 import tempfile
 import unittest
 
-from modconf import io
+from pymodconf import io
 
 
 class TestCreateDirectories(unittest.TestCase):

@@ -24,7 +24,7 @@ with open("README.md", "r") as fh:
 __version__ = '0.0.1'
 
 setuptools.setup(
-    name='modconf',
+    name='pymodconf',
     version=__version__,
     description='Modularized configuration files.',
     long_description=long_description,

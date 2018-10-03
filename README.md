@@ -8,6 +8,57 @@ sections in a configuration file. This can, for instance, be sections which are 
 For this purpose, `modconf` add the functionality to define custom `Tag`s representing groups in a configuration file. For instance, if you have an application with multiple modules you can define the tag `Module: ` and add that prefix to each section in the configuration file describing a certain module.
 
 
+## Installation
+
+You can find the latest version on [PyPi](https://pypi.org/project/modconf/). So simply use `pip` with
+
+    pip install modconf
+
+
+## Usage
+
+This following configuration file shows the feature set of `modconf`: 
+    
+    1: [Application]
+    2: name=modconf
+    3: string=Hello ${name}!
+    4: list=One, Two, Three, Four
+    
+    6: [Some Section]
+    7: opt=${Application:name}-section
+    
+    9: [Module: Test]
+    10:log-dir= /tmp/test_module
+
+### Sections
+In line `[1]`  a new section `Application` is created with multiple options show in lines `[2]-[3]`.
+
+### Variable replacement
+Due to the fact that `modconf` is based on the `configparser` module, the variable-replacement feature is available, too. In line `[3]` a reference to an option in the same section is shown. If you want to reference an option in any other section, you'll have to specify the name of the section, as you can see in line `[7]`.
+
+### Lists
+If `modconf` finds any commata in the value of an option, it will split up that value and generate a list of it. In line `[4]` the value is represented in Python as a list with four entries: 'One', 'Two', 'Three', 'Four'.
+
+### Directory creation
+Another feature of `modconf` is the automatic directory creation. If any option name ends with the suffix `-dir` it will try to recursively create the directory tree. For instance, due to the definition in line `[10]`, a directory `test-module` will be created in the directory `/tmp/`.
+
+### Tagging
+The most interesting feature of `modconf` is the ability to group sections using user-defined `Tag`s. As you can see in line `[9]` a section with the tag definition `Module` is defined. 
+
+Before `modconf` is able to group such sections, you'll have to register the tag ad `modconf` with:
+
+```
+import modconf as mc
+
+module_tag = mc.tag.Tag('Module:')
+mc.tag.register(module_tag)
+```
+Afterwards, you can load the configuration file with:
+```
+config = mc.parser.load('example.cfg')
+```
+The result is dictionary with section names and user-defined modules as keys and the corresponding options as values.
+ 
 
 ## Thanks
 If you like this tool, donate some bugs 💸 for a drink or two at the ETH-Wallet *0xf7d518A730D93a6d27415EcaE5D801Dde125dE15*, 

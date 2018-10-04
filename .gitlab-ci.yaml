@@ -1,0 +1,91 @@
+# This file is a template, and might need editing before it works on your project.
+# Official language image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/python/tags/
+image: python:latest
+
+# Change pip's cache directory to be inside the project directory since we can
+# only cache local items.
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache"
+
+# Pip's cache doesn't store the python packages
+# https://pip.pypa.io/en/stable/reference/pip_install/#caching
+#
+# If you want to also cache the installed packages, you have to install
+# them in a virtualenv and cache it as well.
+cache:
+  paths:
+    - .cache/pip
+    - venv/
+
+# Define the available CI stages
+stages:
+  # check format of project files
+  - lint
+
+  # build the project and documentation
+  - build
+
+  # test the application
+  - test
+
+  # deploy the application, send to GitHub, PyPi and/or DockerHub
+  - deploy
+
+
+# Lint our Markdown files as part of the verify stage
+markdownlint:
+  stage: lint
+  image:
+    name: ruby:alpine
+    entrypoint: [""]
+  before_script:
+    - gem install mdl
+    - mdl --version
+  script:
+    - mdl --style mdl_style.rb --warnings .
+
+# Lint our YAML files as part of the verify stage
+yamllint:
+  stage: lint
+    image: sdesbure/yamllint
+    before_script:
+    - yamllint --version
+    script:
+    - yamllint .
+#
+#run:
+#  script:
+#  # setup an up2date virtual environment
+#  - python3 -m venv venv & source venv/bin/activate
+#  - pip3 install --upgrade pip && pip3 install --upgrade setuptools
+#  # install wheel
+#  - pip3 install wheel --upgrade
+#  - python setup.py bdist_wheel
+#  # an alternative approach is to install and run:
+#  - pip install dist/*
+#  # run the command here
+#  artifacts:
+#    paths:
+#    - dist/*.whl
+#
+#pages:
+## The documentation can be build using cmake
+#  script:
+#  # setup an venv
+#  - python3 -m venv venv
+#  - source venv/bin/activate
+#  # install requirements for documentation generation
+#  - pip3 install breathe sphinx sphinx_rtd_theme
+#
+#  # create a build directory
+#  - mkdir build  && cd build
+#  # now initialize cmake and create the documentation
+#  - cmake .. && make html
+#  # relocate it
+#  - mv ../doc/html ../public/
+#  artifacts:
+#    paths:
+#    - public
+#  only:
+#  - master

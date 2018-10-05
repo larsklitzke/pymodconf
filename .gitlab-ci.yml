@@ -1,5 +1,5 @@
 ---
-image: docker:latest
+image: python:latest
 
 # Change pip's cache directory to be inside the project directory since we can
 # only cache local items.
@@ -20,21 +20,21 @@ stages:
   # check format of project files
   - lint
 
-  # build the project and documentation
-  - build
-
   # test the application
   - test
 
-  # deploy the application, send to GitHub, PyPi and/or DockerHub
+  # build the project and documentation
+  - build
+
+  # deploy the application. Send to GitHub, PyPi and/or DockerHub
   - deploy
 
 
-# Lint our Markdown files as part of the verify stage
+# Lint our Markdown files
 markdownlint:
   stage: lint
   tags:
-    - lint
+    - docker
   image:
     name: ruby:alpine
     entrypoint: [""]
@@ -44,13 +44,29 @@ markdownlint:
   script:
     - mdl --style mdl_style.rb --warnings .
 
-# Lint our YAML files as part of the verify stage
+# Lint our YAML files
 yamllint:
   stage: lint
   tags:
-    - lint
+    - docker
   image: sdesbure/yamllint
   before_script:
     - yamllint --version
   script:
     - yamllint .
+
+
+# Test the application
+tox:
+  stage: test
+  tags:
+    - python
+  before_script:
+    # update the pip version
+    - pip install -U pip && pip install -U setuptools
+    # install tox and coverage
+    - pip install -U tox coverage
+  script:
+    # run tox
+    - tox
+

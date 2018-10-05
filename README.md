@@ -97,7 +97,7 @@ config[str(module_tag)] # returns [{'name': ' Test', 'log-dir': '/tmp/test_modul
 
 If you like this tool, donate some bugs 💸 for a drink or two at the ETH-Wallet
 *0xf7d518A730D93a6d27415EcaE5D801Dde125dE15*,
-XRP-Wallet *rhVWrjB9EGDeK4zuJ1x2KXSjjSpsDQSaU6* with destination tag *653103618*, Stellar Wallet 
+XRP-Wallet *rhVWrjB9EGDeK4zuJ1x2KXSjjSpsDQSaU6* with destination tag *653103618*, Stellar Wallet
 *GCXDBCRQHDTUJDSZUJPC5TTLBERIWRC7SYBTZO3UOFM2QBE2JXK3DJKE* with Memo *3388649662849648* or via
 [PayPal](https://www.paypal.me/LarsKlitzke). Cheers 🍻!
 

@@ -29,6 +29,9 @@ stages:
   # deploy the application. Send to GitHub, PyPi and/or DockerHub
   - deploy
 
+##############
+# Lint stage #
+##############
 
 # Lint our Markdown files
 markdownlint:
@@ -55,17 +58,28 @@ yamllint:
   script:
     - yamllint .
 
+##############
+# Test stage #
+##############
 
 # Test the application
-tox:
+unittest:
   stage: test
-  tags:
-    - python
   before_script:
     # update the pip version
     - pip install -U pip && pip install -U setuptools
-    # install tox and coverage
-    - pip install -U tox coverage
   script:
-    # run tox
-    - tox
+    # run unittest
+    - python -m unittest discover
+
+# Code coverage analysis
+coverage:
+  stage: test
+  before_script:
+    # update the pip version
+    - pip install -U pip && pip install -U setuptools
+    # install coverage
+    - pip install -U coverage
+  script:
+    # run code coverage analysis
+    - coverage report

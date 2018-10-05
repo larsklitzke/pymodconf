@@ -22,6 +22,7 @@ from pymodconf import tag
 from pymodconf.io import read
 from pymodconf.parser import parse
 from pymodconf.tag import Tag, register
+from tests import DEFAULT_TEST_FILE
 
 
 class TestTagCreation(unittest.TestCase):
@@ -55,29 +56,24 @@ class TestTagCreation(unittest.TestCase):
         self.assertTrue(tag.available('TestTag:'))
 
 
-class TestTagInConfig(unittest.TestCase):
+class ModuleInConfig(unittest.TestCase):
 
     def setUp(self):
-        self.testtag = Tag('TestTag:')
+        self.testtag = Tag('Module:')
+        register(self.testtag)
 
     def test_load_config(self):
 
-        parser = read(os.path.join(os.path.dirname(__file__), 'module_test_config.cfg'))
+        parser = read(DEFAULT_TEST_FILE)
 
         config = parse(parser)
 
         self.assertTrue(str(self.testtag) in config)
-        self.assertTrue(len(config[str(self.testtag)]) == 2)
+        self.assertEqual(1, len(config[str(self.testtag)]))
         self.assertTrue(len(list(config.keys())), 1)
 
-        # check if all names are present
-        names = [e['name'] for e in config[str(self.testtag)]]
+        # check if the module section is present
+        self.assertIn('Test', [s['name'] for s in config[str(self.testtag)]])
 
-        for name in names:
-            self.assertIn(name, ['Test1', 'Test2'])
-
-        # check if the options are available, too.
-        options = [e['opt'] for e in config[str(self.testtag)]]
-
-        for o in options:
-            self.assertIn(o, ['HalloTest1', 'HalloTest2'])
+        # check if the option is available, too.
+        self.assertIn('log-dir', config[str(self.testtag)][0])

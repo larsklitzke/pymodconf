@@ -15,29 +15,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import os
 import unittest
 
 from pymodconf.parser import load, InvalidConfigurationError
 from pymodconf.tag import Tag, register
-
-MODULE_TEST_FILE = os.path.join(os.path.dirname(__file__), 'module_test_config.cfg')
-DEFAULT_TEST_FILE = os.path.join(os.path.dirname(__file__), 'default_test_config.cfg')
+from tests import DEFAULT_TEST_FILE
 
 
 class TestLoadModuleConfiguration(unittest.TestCase):
 
     def test_load_module_config_file(self):
         # register the test tag
-        t = Tag('TestTag: ')
+        t = Tag('Module: ')
         register(t)
 
         # load the configuration
-        config = load(MODULE_TEST_FILE)
+        config = load(DEFAULT_TEST_FILE)
 
         # check if tag is available
         self.assertIn(str(t), config)
-        self.assertEqual(2, len(config[str(t)]))
+        self.assertEqual(1, len(config[str(t)]))
 
 
 class TestLoadDefaultConfiguration(unittest.TestCase):
@@ -70,7 +67,7 @@ class TestLoadDefaultConfiguration(unittest.TestCase):
 
         self.assertIn('Some Section', config)
 
-        self.assertEqual('pymodconf-section', config['Some Section']['opt'])
+        self.assertEqual('pymodconf-app-section', config['Some Section']['opt'])
 
 
 class TestLoadConfigValidated(unittest.TestCase):

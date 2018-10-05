@@ -20,6 +20,7 @@ import tempfile
 import unittest
 
 from pymodconf import io
+from tests import DEFAULT_TEST_FILE
 
 
 class TestCreateDirectories(unittest.TestCase):
@@ -84,7 +85,7 @@ class TestReadConfiguration(unittest.TestCase):
 
     def test_read_module_configuration(self):
 
-        parser = io.read(os.path.join(os.path.dirname(__file__), 'module_test_config.cfg'))
+        parser = io.read(DEFAULT_TEST_FILE)
 
         self.assertIsNotNone(parser)
 
@@ -92,9 +93,3 @@ class TestReadConfiguration(unittest.TestCase):
 
         with self.assertRaises(FileNotFoundError):
             io.read('/lsajdlad.cfg')
-
-    def test_read_default_configuration(self):
-
-        parser = io.read(os.path.join(os.path.dirname(__file__), 'default_test_config.cfg'))
-
-        self.assertIsNotNone(parser)

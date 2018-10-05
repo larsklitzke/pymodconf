@@ -75,7 +75,7 @@ unittest:
 # Code coverage analysis
 coverage:
   stage: test
-  coverage: /\d{3}%\Z/
+  coverage: /TOTAL.*(\d{3}%)/
   before_script:
     # update the pip version
     - pip install -U pip && pip install -U setuptools

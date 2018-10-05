@@ -1,6 +1,7 @@
 # Modularized configuration files
 
 [![](https://gitlab.klitzke-web.de/lkl/pymodconf/badges/master/pipeline.svg)](https://gitlab.klitzke-web.de/lkl/pymodconf/tree/master)
+[![coverage report](https://gitlab.klitzke-web.de/lkl/pymodconf/badges/master/coverage.svg)](https://gitlab.klitzke-web.de/lkl/pymodconf/commits/master)
 
 This is a Python package which enables to modularize configuration files.
 

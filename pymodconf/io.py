@@ -17,6 +17,11 @@
 import configparser
 import os
 
+__all__ = [
+    'mkdirs',
+    'read'
+]
+
 
 def mkdirs(config):
     """

@@ -20,6 +20,13 @@
 from pymodconf import tag
 from pymodconf.io import read
 
+__all__ = [
+    'InvalidConfigurationError',
+    'load',
+    'validate',
+    'parse'
+]
+
 
 class InvalidConfigurationError(RuntimeError):
     """ Error for an invalid configurations. """
@@ -139,8 +146,8 @@ def parse(parser):
                 break
 
         if sec_tag:
-            # remove the tag from the name
-            section_def['name'] = sec.replace(sec_tag.name, '')
+            # remove the tag, trailing and leading white spaces from the name
+            section_def['name'] = sec.replace(sec_tag.name, '').strip()
 
             config[str(sec_tag)].append(section_def)
         else:

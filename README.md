@@ -1,6 +1,6 @@
-# Modularized configuration files
+# Modconf
 
-[![](https://gitlab.klitzke-web.de/lkl/pymodconf/badges/master/pipeline.svg)](https://gitlab.klitzke-web.de/lkl/pymodconf/tree/master)
+[![](https://gitlab.klitzke-web.de/lkl/pymodconf/badges/master/pipeline.svg)](https://gitlab.klitzke-web.de/lkl/pymodconf/commits/master)
 [![coverage report](https://gitlab.klitzke-web.de/lkl/pymodconf/badges/master/coverage.svg)](https://gitlab.klitzke-web.de/lkl/pymodconf/commits/master)
 
 This is a Python package which enables to modularize configuration files.
@@ -64,7 +64,7 @@ will try to recursively create the directory tree. For instance, due to the defi
 The most interesting feature of `pymodconf` is the ability to group sections using user-defined `Tag`s. As you can see
 in line `[9]` a section with the tag definition `Module` is defined.
 
-Before `pymodconf` is able to group such sections, you'll have to register the tag ad `pymodconf` with:
+Before `pymodconf` is able to group such sections, you'll have to register the tag at `pymodconf` with:
 
 ```python
 import pymodconf as mc
@@ -81,20 +81,33 @@ config = mc.parser.load('example.cfg')
 
 The result is dictionary with section names and user-defined modules as keys and the corresponding options as values.
 
+You can, for instance, access the section belonging to the group `Module` either with:
+
+```python
+config['module'] # returns [{'name': ' Test', 'log-dir': '/tmp/test_module'}]
+```
+
+or using the tag itself with:
+
+```python
+config[str(module_tag)] # returns [{'name': ' Test', 'log-dir': '/tmp/test_module'}]
+```
+
 ## Thanks
 
 If you like this tool, donate some bugs 💸 for a drink or two at the ETH-Wallet
 *0xf7d518A730D93a6d27415EcaE5D801Dde125dE15*,
-XRP-Wallet *rhVWrjB9EGDeK4zuJ1x2KXSjjSpsDQSaU6* with destination tag *653103618* or via
+XRP-Wallet *rhVWrjB9EGDeK4zuJ1x2KXSjjSpsDQSaU6* with destination tag *653103618*, Stellar Wallet 
+*GCXDBCRQHDTUJDSZUJPC5TTLBERIWRC7SYBTZO3UOFM2QBE2JXK3DJKE* with Memo *3388649662849648* or via
 [PayPal](https://www.paypal.me/LarsKlitzke). Cheers 🍻!
 
 ## License
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public
-License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later
-version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
-implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-details.
+This program is free software: you can redistribute it and/or modify it under the terms of the [GNU General Public
+License](https://choosealicense.com/licenses/gpl-3.0/) as published by the Free Software Foundation, either version 3
+ of the License, or (at your option) any later version. This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 

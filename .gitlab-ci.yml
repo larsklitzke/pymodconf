@@ -1,7 +1,3 @@
-# This file is a template, and might need editing before it works on your project.
-# Official language image. Look for the different tagged releases at:
-# https://hub.docker.com/r/library/python/tags/
-
 ---
 image: docker:latest
 
@@ -54,39 +50,3 @@ yamllint:
     - yamllint --version
   script:
     - yamllint .
-#
-#run:
-#  script:
-#  # setup an up2date virtual environment
-#  - python3 -m venv venv & source venv/bin/activate
-#  - pip3 install --upgrade pip && pip3 install --upgrade setuptools
-#  # install wheel
-#  - pip3 install wheel --upgrade
-#  - python setup.py bdist_wheel
-#  # an alternative approach is to install and run:
-#  - pip install dist/*
-#  # run the command here
-#  artifacts:
-#    paths:
-#    - dist/*.whl
-#
-#pages:
-## The documentation can be build using cmake
-#  script:
-#  # setup an venv
-#  - python3 -m venv venv
-#  - source venv/bin/activate
-#  # install requirements for documentation generation
-#  - pip3 install breathe sphinx sphinx_rtd_theme
-#
-#  # create a build directory
-#  - mkdir build  && cd build
-#  # now initialize cmake and create the documentation
-#  - cmake .. && make html
-#  # relocate it
-#  - mv ../doc/html ../public/
-#  artifacts:
-#    paths:
-#    - public
-#  only:
-#  - master

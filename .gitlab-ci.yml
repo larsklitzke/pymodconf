@@ -23,9 +23,6 @@ stages:
   # test the application
   - test
 
-  # analyse the test results
-  - post-test
-
   # build the project and documentation
   - build
 
@@ -77,9 +74,7 @@ unittest:
 
 # Code coverage analysis
 coverage:
-  stage: post-test
-  dependencies:
-    - unittest
+  stage: test
   coverage: /\d{3}%\Z/
   before_script:
     # update the pip version
@@ -88,4 +83,5 @@ coverage:
     - pip install -U coverage
   script:
     # run code coverage analysis
+    - coverage run -m unittest discover
     - coverage report

@@ -48,10 +48,10 @@ markdownlint:
 # Lint our YAML files as part of the verify stage
 yamllint:
   stage: lint
-    image: sdesbure/yamllint
-    before_script:
+  image: sdesbure/yamllint
+  before_script:
     - yamllint --version
-    script:
+  script:
     - yamllint .
 #
 #run:

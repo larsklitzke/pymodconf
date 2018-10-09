@@ -103,5 +103,6 @@ doc:
   image: python:latest
   before_script:
     - pip install -U Sphinx
+    - python setup install
   script:
     - make -C doc html

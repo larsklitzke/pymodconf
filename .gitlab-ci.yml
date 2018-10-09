@@ -85,3 +85,23 @@ coverage:
     # run code coverage analysis
     - coverage run -m unittest discover
     - coverage report
+
+##############
+# Build stage #
+##############
+
+bdist:
+  stage: build
+  image: python:latest
+  before_script:
+    - pip install -U pip && pip install -U setuptools wheel
+  script:
+    - python setup.py bdist_wheel
+
+doc:
+  stage: build
+  image: python:latest
+  before_script:
+    - pip install -U Sphinx
+  script:
+    - make -C doc html

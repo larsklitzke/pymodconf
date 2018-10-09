@@ -17,8 +17,8 @@
 
 import setuptools
 
-# read in the long description written in the README.md file
-with open("README.md", "r") as fh:
+# read in the long description written in the README.rst file
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 __version__ = '0.0.2'
@@ -28,7 +28,7 @@ setuptools.setup(
     version=__version__,
     description='Modularized configuration files.',
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
     author='Lars Klitzke',
     author_email='Lars.Klitzke@gmail.com',
     classifiers=(

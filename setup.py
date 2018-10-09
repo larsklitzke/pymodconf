@@ -28,7 +28,6 @@ setuptools.setup(
     version=__version__,
     description='Modularized configuration files.',
     long_description=long_description,
-    long_description_content_type="text/x-rst",
     author='Lars Klitzke',
     author_email='Lars.Klitzke@gmail.com',
     classifiers=(

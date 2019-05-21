@@ -105,13 +105,7 @@ or using the tag itself with:
 Thanks
 #######
 
-If you like this tool, donate some bugs 💸 for a drink or two at
-
-* ETH: *0xf7d518A730D93a6d27415EcaE5D801Dde125dE15*
-* XRP: *rhVWrjB9EGDeK4zuJ1x2KXSjjSpsDQSaU6* with destination tag *653103618*
-* Stellar: *GCXDBCRQHDTUJDSZUJPC5TTLBERIWRC7SYBTZO3UOFM2QBE2JXK3DJKE* with Memo *3388649662849648*
-
-or via `PayPal`_. Cheers 🍻!
+If you like this tool, donate some bugs 💸 for a drink or two via `PayPal`_. Cheers 🍻!
 
 License
 ########
